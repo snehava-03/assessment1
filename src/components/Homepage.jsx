@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, Grid, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 const bull = (
@@ -21,8 +21,10 @@ export const Homepage = () => {
   },[])
 
   return (
-    (rows.map((item)=>(
-    <Card sx={{ minWidth: 275, marginTop: '7%' }} key={item.id}>
+    <Grid container spacing={5} style={{ marginTop: '7%' }}>
+    {rows.map((item)=>(
+      <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
+    <Card sx={{ minWidth: 275, marginTop: '7%' }} >
     <CardContent>
       <Typography variant="body1" sx={{ fontSize: 16, fontWeight: 'bold' }}>
         Product name: {item.title}
@@ -34,7 +36,11 @@ export const Homepage = () => {
        Category: {item.category}
       </Typography>
       <Typography  variant="body1" sx={{ fontSize: 16 }}>
-      Image: {item.image}
+      <img
+                src={item.image}
+                alt={item.title}
+                style={{ width: '100%', height: 'auto', maxHeight: '200px', objectFit: 'contain' }}
+              />
       
         <br />
         
@@ -44,7 +50,9 @@ export const Homepage = () => {
       <Button size="small">Learn More</Button>
     </CardActions>
   </Card>
-  )))
+  </Grid>
+  ))}
+  </Grid>
 );
 }
   
